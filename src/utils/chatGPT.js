@@ -3,7 +3,7 @@ import OpenAI from 'openai';
 export const CHAT_GPT_MODEL = 'gpt-3.5-turbo';
 
 export const OpenAIWrapper = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: import.meta.env.VITE_OPEN_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
