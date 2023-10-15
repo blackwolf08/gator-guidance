@@ -7,6 +7,7 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import { Modal, Paper, Avatar, Typography } from '@mui/material';
 
+import Label from 'src/components/label';
 import Speaker from 'src/components/Speaker';
 import Iconify from 'src/components/iconify';
 
@@ -23,7 +24,7 @@ export default function ResponseCard({ gator }) {
       alt={gator.name}
       src={gator.imagePath}
       sx={{
-        top: 0,
+        top: 20,
         width: 1,
         height: 1,
         objectFit: 'cover',
@@ -32,10 +33,34 @@ export default function ResponseCard({ gator }) {
     />
   );
 
+  const renderStatus = (
+    <Label
+      variant="filled"
+      color="error"
+      sx={{
+        zIndex: 9,
+        top: -4,
+        width: '100%',
+        position: 'absolute',
+        textTransform: 'uppercase',
+        padding: 2,
+        fontSize: 9,
+        bottomRightRadius: 0,
+        bottomLeftRadius: 0,
+      }}
+    >
+      {gator.type}
+    </Label>
+  );
+
   return (
     <>
       <Card sx={{ cursor: 'pointer' }} raised variant="elevation" onClick={handleOpen}>
-        <Box sx={{ pt: '100%', position: 'relative' }}>{renderImg}</Box>
+        <Box sx={{ pt: '100%', position: 'relative' }}>
+          {renderStatus}
+
+          {renderImg}
+        </Box>
 
         <Stack spacing={2} sx={{ p: 3 }} direction="column">
           <Link color="inherit" underline="hover" variant="h5" align="center" noWrap>
@@ -66,6 +91,24 @@ export default function ResponseCard({ gator }) {
           }}
         >
           <Stack direction="row" spacing={2} alignContent="center" justifyContent="center">
+            <Label
+              variant="filled"
+              color="error"
+              sx={{
+                zIndex: 9,
+                top: -4,
+                width: '100%',
+                position: 'absolute',
+                textTransform: 'uppercase',
+                padding: 2,
+                fontSize: 12,
+                bottomRightRadius: 0,
+                bottomLeftRadius: 0,
+              }}
+            >
+              {gator.type}
+            </Label>
+
             <Box
               component="img"
               alt={gator.name}
@@ -144,6 +187,9 @@ export default function ResponseCard({ gator }) {
               top: 10,
               right: 10,
               cursor: 'pointer',
+              zIndex: 999,
+              backgroundColor: 'white',
+              borderRadius: '50%',
             }}
           />
         </Box>

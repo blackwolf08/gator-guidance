@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { askMemberGPT } from 'src/utils/chatGPT';
 import { gatorMembers } from 'src/utils/gatorMembers';
+import { askMemberGPT, getSentiment } from 'src/utils/chatGPT';
 
 export const AI_STAGES = {
   ASKING: 'ASKING',
@@ -20,6 +20,7 @@ const initialState = {
   error: null,
   question: '',
   stage: AI_STAGES.ASKING,
+  sentiment: '',
 };
 
 const slice = createSlice({
@@ -95,6 +96,10 @@ const slice = createSlice({
         return gator;
       });
     },
+    // set sentiment
+    setSentiment(state, action) {
+      state.sentiment = action.payload;
+    },
   },
 });
 
@@ -111,6 +116,7 @@ export function askGators() {
   return async (dispatch, getState) => {
     const { gators } = getState().ai;
     dispatch(actions.startLoading());
+    dispatch(analyseSentiment());
     try {
       const batchedGators = gators.map(async (gator) => {
         const response = await askMemberGPT(gator);
@@ -122,6 +128,19 @@ export function askGators() {
     } catch (error) {
       dispatch(actions.hasError(error));
       dispatch(actions.stopLoading());
+    }
+  };
+}
+
+export function analyseSentiment() {
+  return async (dispatch, getState) => {
+    const { question } = getState().ai;
+    try {
+      const sentiment = await getSentiment(question);
+      console.log(sentiment);
+      dispatch(actions.setSentiment(sentiment));
+    } catch (error) {
+      // dispatch(actions.hasError(error));
     }
   };
 }
