@@ -140,7 +140,7 @@ export default function ResponseCard({ gator }) {
             onClick={handleClose}
             width={32}
             sx={{
-              position: 'absolute',
+              position: 'fixed',
               top: 10,
               right: 10,
               cursor: 'pointer',

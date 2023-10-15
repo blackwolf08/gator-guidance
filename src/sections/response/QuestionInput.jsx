@@ -29,6 +29,10 @@ export default function QuestionInput() {
       return;
     }
 
+    if (isListening) {
+      return;
+    }
+
     const recognition = new SpeechRecognition();
     recognition.onstart = () => {
       setIsListening(true);

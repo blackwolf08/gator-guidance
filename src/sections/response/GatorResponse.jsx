@@ -47,7 +47,7 @@ export default function GatorResponse() {
         </Stack>
         <Grid container justifyContent="center" spacing={2}>
           {gators.map((gator) => (
-            <Grid xs={6} item key={gator.id}>
+            <Grid xs={6} sm={6} md={3} item key={gator.id}>
               <ResponseCard gator={gator} />
             </Grid>
           ))}

@@ -17,7 +17,7 @@ export default function GatorsView() {
 
       <Grid container spacing={3}>
         {gatorMembers.map((gator) => (
-          <Grid key={gator.id} xs={6}>
+          <Grid key={gator.id} xs={6} sm={6} md={3}>
             <GatorCard gator={gator} />
           </Grid>
         ))}

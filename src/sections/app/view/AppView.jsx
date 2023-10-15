@@ -7,6 +7,8 @@ import { Box, Stack, Button } from '@mui/material';
 
 import { useRouter } from 'src/routes/hooks';
 
+import { useResponsive } from 'src/hooks/use-responsive';
+
 import { actions } from 'src/store/slices/ai';
 
 import QuestionInput from '../question-input';
@@ -16,6 +18,7 @@ import QuestionInput from '../question-input';
 export default function AppView() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const isMobile = useResponsive('down', 'sm');
 
   const handleChooseGators = () => {
     router.push('/gators');
@@ -32,7 +35,7 @@ export default function AppView() {
           position: 'relative',
         }}
       >
-        <Stack spacing={3} direction="column">
+        <Stack spacing={2} direction="column" alignItems="center" sx={{}}>
           <Typography align="center" variant="h4" sx={{ mb: 5 }}>
             Ask the Gator Advisory Board
           </Typography>
@@ -46,6 +49,8 @@ export default function AppView() {
               width: 1,
               height: 1,
               objectFit: 'cover',
+              maxHeight: '300px',
+              maxWidth: '300px',
             }}
           />
 
@@ -55,20 +60,23 @@ export default function AppView() {
           </Button>
         </Stack>
       </Container>
-      <Box
-        component="img"
-        alt="Gator Advisory Board"
-        src="/assets/gators/hello-gator.gif"
-        sx={{
-          bottom: '-2px',
-          width: 1,
-          height: '260px',
-          objectFit: 'cover',
-          position: 'absolute',
-          right: '50%',
-          transform: 'translateX(50%)',
-        }}
-      />
+      {isMobile && (
+        <Box
+          component="img"
+          alt="Gator Advisory Board"
+          src="/assets/bye-gator.gif"
+          sx={{
+            bottom: '-2px',
+            width: 1,
+            height: 'auto',
+            objectFit: 'cover',
+            position: 'absolute',
+            right: '50%',
+            transform: 'translateX(50%)',
+            maxWidth: '300px',
+          }}
+        />
+      )}
     </>
   );
 }

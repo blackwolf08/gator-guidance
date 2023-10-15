@@ -84,7 +84,6 @@ const slice = createSlice({
     },
     // REMOVE GATOR (minimum 4 gators)
     removeGator(state, action) {
-      console.log(action.payload);
       state.gators = state.gators.filter((gator) => gator.id !== action.payload.id);
       localStorage.setItem('gators', JSON.stringify(state.gators));
     },
