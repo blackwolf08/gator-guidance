@@ -65,7 +65,15 @@ export default function AppView() {
             Example questions
           </Typography>
           <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center">
-            <Grid item xs={6}>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <Button
                 onClick={() => dispatch(actions.setQuestion("I don't want to go to school"))}
                 variant="contained"
@@ -75,7 +83,15 @@ export default function AppView() {
                 &quot;I don&apos;t want to go to school&quot;
               </Button>
             </Grid>
-            <Grid item xs={6}>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <Button
                 onClick={() => dispatch(actions.setQuestion("My friend didn't play with me"))}
                 variant="contained"
@@ -85,7 +101,15 @@ export default function AppView() {
                 &quot;My friend didn&apos;t play with me&quot;
               </Button>
             </Grid>
-            <Grid item xs={6}>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <Button
                 onClick={() => dispatch(actions.setQuestion('I am scared of the dark'))}
                 variant="contained"
@@ -95,7 +119,15 @@ export default function AppView() {
                 &quot;I am scared of the dark&quot;
               </Button>
             </Grid>
-            <Grid item xs={6}>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <Button
                 onClick={() => dispatch(actions.setQuestion("I am scared of the Doctor's visit"))}
                 variant="contained"
