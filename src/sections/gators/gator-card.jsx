@@ -64,6 +64,7 @@ export default function GatorCard({ gator }) {
 
   return (
     <Card
+      className="animate__animated animate__slideInUp"
       raised
       variant="elevation"
       sx={{

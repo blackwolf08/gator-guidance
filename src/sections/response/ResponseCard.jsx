@@ -55,7 +55,13 @@ export default function ResponseCard({ gator }) {
 
   return (
     <>
-      <Card sx={{ cursor: 'pointer' }} raised variant="elevation" onClick={handleOpen}>
+      <Card
+        className="animate__animated animate__bounceIn"
+        sx={{ cursor: 'pointer' }}
+        raised
+        variant="elevation"
+        onClick={handleOpen}
+      >
         <Box sx={{ pt: '100%', position: 'relative' }}>
           {renderStatus}
 

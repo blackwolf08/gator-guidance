@@ -59,7 +59,7 @@ export default function QuestionInput() {
       <Stack direction="row" spacing={2}>
         <TextField
           fullWidth
-          label="I was wondering..."
+          label="Continue the conversation..."
           placeholder="What's on your mind?"
           variant="outlined"
           value={question}

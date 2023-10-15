@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { gatorMembers } from 'src/utils/gatorMembers';
-import { askMemberGPT, getSentiment } from 'src/utils/chatGPT';
+import { askMemberGPT, generateAffirmation } from 'src/utils/chatGPT';
 
 export const AI_STAGES = {
   ASKING: 'ASKING',
@@ -21,6 +21,7 @@ const initialState = {
   question: '',
   stage: AI_STAGES.ASKING,
   sentiment: '',
+  affirmation: '',
 };
 
 const slice = createSlice({
@@ -89,16 +90,22 @@ const slice = createSlice({
       localStorage.setItem('gators', JSON.stringify(state.gators));
     },
     // clear questions and gator conversation
-    clearQuestions(state) {
+    resetAIstate(state) {
       state.questions = [];
       state.gators = state.gators.map((gator) => {
         gator.conversation = [];
         return gator;
       });
+      state.affirmation = '';
+      state.sentiment = '';
     },
     // set sentiment
     setSentiment(state, action) {
       state.sentiment = action.payload;
+    },
+    // set affirmation
+    setAffirmation(state, action) {
+      state.affirmation = action.payload;
     },
   },
 });
@@ -106,6 +113,11 @@ const slice = createSlice({
 // Actions
 export function addQuestionToState(question) {
   return (dispatch) => {
+    const lsQuestions = localStorage.getItem('questions')
+      ? JSON.parse(localStorage.getItem('questions'))
+      : [];
+    lsQuestions.push(question);
+    localStorage.setItem('questions', JSON.stringify(lsQuestions));
     dispatch(actions.addQuestion(question));
     dispatch(actions.addQuestionToGators(question));
     dispatch(askGators());
@@ -116,7 +128,7 @@ export function askGators() {
   return async (dispatch, getState) => {
     const { gators } = getState().ai;
     dispatch(actions.startLoading());
-    dispatch(analyseSentiment());
+    dispatch(generateAffirmationText());
     try {
       const batchedGators = gators.map(async (gator) => {
         const response = await askMemberGPT(gator);
@@ -132,13 +144,12 @@ export function askGators() {
   };
 }
 
-export function analyseSentiment() {
+export function generateAffirmationText() {
   return async (dispatch, getState) => {
     const { question } = getState().ai;
     try {
-      const sentiment = await getSentiment(question);
-      console.log(sentiment);
-      dispatch(actions.setSentiment(sentiment));
+      const affirmation = await generateAffirmation(question);
+      dispatch(actions.setAffirmation(affirmation));
     } catch (error) {
       // dispatch(actions.hasError(error));
     }

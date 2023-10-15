@@ -25,12 +25,13 @@ export default function AppView() {
   };
 
   useEffect(() => {
-    dispatch(actions.clearQuestions());
+    dispatch(actions.resetAIstate());
   }, [dispatch]);
 
   return (
     <>
       <Container
+        className="animate__animated animate__fadeIn"
         sx={{
           position: 'relative',
         }}
@@ -44,6 +45,7 @@ export default function AppView() {
             component="img"
             alt="Gator Advisory Board"
             src="/assets/gators/togeather.png"
+            className="animate__animated animate__lightSpeedInRight"
             sx={{
               top: 0,
               width: 1,
@@ -93,12 +95,12 @@ export default function AppView() {
               }}
             >
               <Button
-                onClick={() => dispatch(actions.setQuestion("My friend didn't play with me"))}
+                onClick={() => dispatch(actions.setQuestion("My friends don't play with me"))}
                 variant="contained"
                 color="primary"
                 sx={{ mr: 2 }}
               >
-                &quot;My friend didn&apos;t play with me&quot;
+                &quot;My friends don&apos;t play with me&quot;
               </Button>
             </Grid>
             <Grid

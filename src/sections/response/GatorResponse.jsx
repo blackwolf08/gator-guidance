@@ -5,9 +5,10 @@ import { Box, Grid, Paper, Stack, Avatar, Typography } from '@mui/material';
 
 import ResponseCard from './ResponseCard';
 import QuestionInput from './QuestionInput';
+import AffirmationAccordion from './TodaysAffirmation';
 
 export default function GatorResponse() {
-  const { gators, questions } = useSelector((state) => state.ai);
+  const { gators, questions, affirmation } = useSelector((state) => state.ai);
   return (
     <Stack direction="column" spacing={3}>
       <QuestionInput />
@@ -45,6 +46,7 @@ export default function GatorResponse() {
             </Paper>
           </Box>
         </Stack>
+        <AffirmationAccordion affirmation={affirmation} />
         <Grid container justifyContent="center" spacing={2}>
           {gators.map((gator) => (
             <Grid xs={6} sm={6} md={3} item key={gator.id}>
