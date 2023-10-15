@@ -79,7 +79,7 @@ export default function QuestionInput() {
         </Typography>
       )}
       <Button onClick={handleSubmit} variant="contained">
-        Ask Gators for Advice
+        Ask!
       </Button>
     </Stack>
   );

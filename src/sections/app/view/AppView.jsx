@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { Box, Stack, Button } from '@mui/material';
+import { Box, Grid, Stack, Button } from '@mui/material';
 
 import { useRouter } from 'src/routes/hooks';
 
@@ -56,8 +56,56 @@ export default function AppView() {
 
           <QuestionInput />
           <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={handleChooseGators}>
-            Choose your Gators
+            Click here to choose your Gators!
           </Button>
+        </Stack>
+
+        <Stack direction="column" alignItems="center" mt={2}>
+          <Typography align="center" variant="h4" sx={{ mb: 1 }}>
+            Example questions
+          </Typography>
+          <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center">
+            <Grid item xs={6}>
+              <Button
+                onClick={() => dispatch(actions.setQuestion("I don't want to go to school"))}
+                variant="contained"
+                color="primary"
+                sx={{ mr: 2 }}
+              >
+                &quot;I don&apos;t want to go to school&quot;
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button
+                onClick={() => dispatch(actions.setQuestion("My friend didn't play with me"))}
+                variant="contained"
+                color="primary"
+                sx={{ mr: 2 }}
+              >
+                &quot;My friend didn&apos;t play with me&quot;
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button
+                onClick={() => dispatch(actions.setQuestion('I am scared of the dark'))}
+                variant="contained"
+                color="primary"
+                sx={{ mr: 2 }}
+              >
+                &quot;I am scared of the dark&quot;
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button
+                onClick={() => dispatch(actions.setQuestion("I am scared of the Doctor's visit"))}
+                variant="contained"
+                color="primary"
+                sx={{ mr: 2 }}
+              >
+                &quot;I am scared of the Doctor&apos;s visit&quot;
+              </Button>
+            </Grid>
+          </Grid>
         </Stack>
       </Container>
       {isMobile && (
@@ -69,11 +117,11 @@ export default function AppView() {
             bottom: '-2px',
             width: 1,
             height: 'auto',
-            objectFit: 'cover',
+            objectFit: 'contain',
             position: 'absolute',
             right: '50%',
             transform: 'translateX(50%)',
-            maxWidth: '300px',
+            maxWidth: '150px',
           }}
         />
       )}
