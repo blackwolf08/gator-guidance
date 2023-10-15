@@ -7,7 +7,7 @@ import { Box, Grid, Stack, Button } from '@mui/material';
 
 import { useRouter } from 'src/routes/hooks';
 
-import { useResponsive } from 'src/hooks/use-responsive';
+// import { useResponsive } from 'src/hooks/use-responsive';
 
 import { actions } from 'src/store/slices/ai';
 
@@ -18,7 +18,7 @@ import QuestionInput from '../question-input';
 export default function AppView() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const isMobile = useResponsive('down', 'sm');
+  // const isMobile = useResponsive('down', 'sm');
 
   const handleChooseGators = () => {
     router.push('/gators');
@@ -108,7 +108,7 @@ export default function AppView() {
           </Grid>
         </Stack>
       </Container>
-      {isMobile && (
+      {/* {isMobile && (
         <Box
           component="img"
           alt="Gator Advisory Board"
@@ -124,7 +124,7 @@ export default function AppView() {
             maxWidth: '150px',
           }}
         />
-      )}
+      )} */}
     </>
   );
 }
